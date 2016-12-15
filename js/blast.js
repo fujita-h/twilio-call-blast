@@ -2,6 +2,11 @@ function init() {
     log("Loaded.");
 }
 
+function setTwimlMethod(method) {
+    document.getElementById("twiml-method-dropdown").innerHTML = method + ' <span class="caret"></span>';
+    $("input#twiml-method").val(method);
+}
+
 function startBlast() {
     var formAccountSid = $("input#twilio-account-sid").val();
     var formAuthToken = $("input#twilio-auth-token").val();
@@ -13,6 +18,7 @@ function startBlast() {
         var formCallFrom = $("input#call-from-number").val();
         var formCallTo = $("input#call-to-number").val();
         var formCount = $("input#call-count").val();
+        var formTwiMLMethod = $("input#twiml-method").val();
         var formTwiMLUrl = $("input#twiml-url").val();
         var callCount = parseInt(formCount, 10);
         if (isNaN(callCount)) {
@@ -27,7 +33,8 @@ function startBlast() {
             var data = {
                 "To": formCallTo,
                 "From": formCallFrom,
-                "Url": formTwiMLUrl
+                "Url": formTwiMLUrl,
+                "Method" : formTwiMLMethod
             };
 
             for (var i = 0; i < callCount; i++) {
@@ -42,7 +49,7 @@ function startBlast() {
                         xhr.setRequestHeader("Authorization", "Basic " + credentials);
                     },
                     success: function (data) {
-                        console.log(data);
+                        //console.log(data);
                         setCallStatus(data["sid"], data["from"], data["to"], data["status"]);
                         log("[Call Request] Success." + " -> Call Sid: " + data["sid"]);
                     },
@@ -86,12 +93,12 @@ function disconnect(callsid) {
                 xhr.setRequestHeader("Authorization", "Basic " + credentials);
             },
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 setCallStatus(data["sid"], data["from"], data["to"], data["status"]);
                 log("[Disconnect Request] Success." + " -> Call Sid: " + callsid);
             },
             error: function (request, errorMessage) {
-                console.log(data);
+                //console.log(data);
                 log("[Disconnect Request] Failed." + " -> Call Sid: " + callsid);
             }
         });
@@ -122,11 +129,11 @@ function updateStatusTable() {
                 xhr.setRequestHeader("Authorization", "Basic " + credentials);
             },
             success: function (data) {
-                console.log(data);
+                //console.log(data);
                 setCallStatus(data["sid"], data["from"], data["to"], data["status"]);
             },
             error: function (request, errorMessage) {
-                console.log(data);
+                //console.log(data);
             }
         });
     }

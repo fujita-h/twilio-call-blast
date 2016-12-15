@@ -7,84 +7,101 @@
     <title>Twilio Call Blast</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
         crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/check-input.js"></script>
-    <script type="text/javascript" src="js/blast.js"></script>
+    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/check-input.js"></script>
+    <script type="text/javascript" src="js/blast.js"></script>
 </head>
 
 <body onload="init();">
-    <a href="https://github.com/fujita-h/twilio-call-blast"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
-            alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-    <div class="container">
-        <h1 class="page-header">Twilio Call Blast</h1>
+<a href="https://github.com/fujita-h/twilio-call-blast"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
+alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+<div class="container">
+    <h1 class="page-header">Twilio Call Blast</h1>
 
-        <div id="page-input">
-            <h3 class="page-header">Input</h3>
-            <div class="form-group has-feedback" id="div-twilio-account-sid">
-                <label class="control-label" for="twilio-account-sid">Twilio Account Sid</label>
-                <input type="text" class="form-control" id="twilio-account-sid" aria-describedby="twilio-account-sid-Status" onchange="checkInputSid();">
-                <span class="glyphicon form-control-feedback" id="icon-twilio-account-sid" aria-hidden="true"></span>
-                <span id="twilio-account-sid-Status" class="sr-only">(success)</span>
-            </div>
+    <div id="page-input">
+        <h3 class="page-header">Input</h3>
+        <div class="form-group has-feedback" id="div-twilio-account-sid">
+            <label class="control-label" for="twilio-account-sid">Twilio Account Sid</label>
+            <input type="text" class="form-control" id="twilio-account-sid" aria-describedby="twilio-account-sid-Status" onchange="checkInputSid();">
+<span class="glyphicon form-control-feedback" id="icon-twilio-account-sid" aria-hidden="true"></span>
+<span id="twilio-account-sid-Status" class="sr-only">(success)</span>
+</div>
 
-            <div class="form-group has-feedback" id="div-twilio-auth-token">
-                <label class="control-label" for="twilio-auth-token">Twilio Auth Token</label>
-                <input type="password" class="form-control" id="twilio-auth-token" aria-describedby="twilio-auth-token-Status" onchange="checkInputToken();">
-                <span class="glyphicon form-control-feedback" id="icon-twilio-auth-token" aria-hidden="true"></span>
-                <span id="twilio-auth-token-Status" class="sr-only">(success)</span>
-            </div>
+<div class="form-group has-feedback" id="div-twilio-auth-token">
+    <label class="control-label" for="twilio-auth-token">Twilio Auth Token</label>
+    <input type="password" class="form-control" id="twilio-auth-token" aria-describedby="twilio-auth-token-Status" onchange="checkInputToken();">
+<span class="glyphicon form-control-feedback" id="icon-twilio-auth-token" aria-hidden="true"></span>
+<span id="twilio-auth-token-Status" class="sr-only">(success)</span>
+</div>
 
-            <div class="form-group has-feedback" id="div-call-from-number">
-                <label class="control-label" for="call-from-number">Call From</label>
-                <input type="text" class="form-control" id="call-from-number" aria-describedby="call-from-number-Status" onchange="checkInputCallFrom();">
-                <span class="glyphicon form-control-feedback" id="icon-call-from-number" aria-hidden="true"></span>
-                <span id="call-from-number-Status" class="sr-only">(success)</span>
-            </div>
+<div class="form-group has-feedback" id="div-call-from-number">
+    <label class="control-label" for="call-from-number">Call From</label>
+    <input type="text" class="form-control" id="call-from-number" aria-describedby="call-from-number-Status" onchange="checkInputCallFrom();">
+<span class="glyphicon form-control-feedback" id="icon-call-from-number" aria-hidden="true"></span>
+<span id="call-from-number-Status" class="sr-only">(success)</span>
+</div>
 
-            <div class="form-group has-feedback" id="div-call-to-number">
-                <label class="control-label" for="call-to-number">Call To</label>
-                <input type="text" class="form-control" id="call-to-number" aria-describedby="call-to-number-Status" onchange="checkInputCallTo();">
-                <span class="glyphicon form-control-feedback" id="icon-call-to-number" aria-hidden="true"></span>
-                <span id="call-to-number-Status" class="sr-only">(success)</span>
-            </div>
+<div class="form-group has-feedback" id="div-call-to-number">
+    <label class="control-label" for="call-to-number">Call To</label>
+    <input type="text" class="form-control" id="call-to-number" aria-describedby="call-to-number-Status" onchange="checkInputCallTo();">
+<span class="glyphicon form-control-feedback" id="icon-call-to-number" aria-hidden="true"></span>
+<span id="call-to-number-Status" class="sr-only">(success)</span>
+</div>
 
-            <div class="form-group has-feedback" id="div-twiml-url">
-                <label class="control-label" for="twiml-url">TwiML URL</label>
-                <input type="text" class="form-control" id="twiml-url" aria-describedby="twiml-url-Status" onchange="checkInputTwiML();">
-                <span class="glyphicon form-control-feedback" id="icon-twiml-url" aria-hidden="true"></span>
-                <span id="twiml-url-Status" class="sr-only">(success)</span>
-            </div>
-
-            <div class="form-group has-feedback" id="div-call-count">
-                <label class="control-label" for="call-count">Number of calls</label>
-                <input type="text" class="form-control" id="call-count" aria-describedby="call-count-Status" onchange="checkInputCallCount();">
-                <span class="glyphicon form-control-feedback" id="icon-call-count" aria-hidden="true"></span>
-                <span id="call-count-Status" class="sr-only">(success)</span>
-            </div>
-
-            <button type="button" class="btn btn-success" id="start" onclick="startBlast();">Start Call Blast</button>
+<div class="form-group has-feedback" id="div-twiml-url">
+    <label class="control-label" for="twiml-url">TwiML URL</label>
+    <div class="input-group">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" id="twiml-method-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">GET <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a href='javascript:setTwimlMethod("GET")'>GET</a></li>
+                <li><a href='javascript:setTwimlMethod("POST")'>POST</a></li>
+            </ul>
         </div>
-        <div id="page-status">
-            <h3 class="page-header">Status</h3>
-            <table class="table table-bordered" id="table-twilio-call-status">
-                <tr>
-                    <th>#</th>
-                    <th>Call Sid</th>
-                    <th>Call From</th>
-                    <th>Call To</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </table>
-            <button type="button" class="btn btn-primary" id="start" onclick="updateStatusTable();">Update Call Status</button>
-        </div>
-        <div id="page-log">
-            <h3 class="page-header">Log</h3>
-            <div id="log">
-            </div>
-        </div>
+        <input type="hidden" id="twiml-method" value="GET">
+        <input type="text" class="form-control" id="twiml-url" aria-describedby="twiml-url-Status" onchange="checkInputTwiML();">
+</div>
+<span class="glyphicon form-control-feedback" id="icon-twiml-url" aria-hidden="true"></span>
+<span id="twiml-url-Status" class="sr-only">(success)</span>
+</div>
+
+<div class="form-group has-feedback" id="div-call-count">
+    <label class="control-label" for="call-count">Number of calls</label>
+    <input type="text" class="form-control" id="call-count" aria-describedby="call-count-Status" onchange="checkInputCallCount();">
+<span class="glyphicon form-control-feedback" id="icon-call-count" aria-hidden="true"></span>
+<span id="call-count-Status" class="sr-only">(success)</span>
+</div>
+
+<button type="button" class="btn btn-success" id="start" onclick="startBlast();">Start Call Blast</button>
+</div>
+<div id="page-status">
+    <h3 class="page-header">Status</h3>
+    <table class="table table-bordered" id="table-twilio-call-status">
+        <tr>
+            <th>#</th>
+            <th>Call Sid</th>
+            <th>Call From</th>
+            <th>Call To</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </table>
+    <button type="button" class="btn btn-primary" id="start" onclick="updateStatusTable();">Update Call Status</button>
+</div>
+<div id="page-log">
+    <h3 class="page-header">Log</h3>
+    <div id="log">
     </div>
+</div>
+</div>
 </body>
 
 </html>

@@ -54,7 +54,7 @@ function startBlast() {
                         log("[Call Request] Success." + " -> Call Sid: " + data["sid"]);
                     },
                     error: function (request, errorMessage) {
-                        log("[Call Request] Failed.");
+                        log("[Call Request] Failed. Error: " + errorMessage);
                     }
                 });
             }
